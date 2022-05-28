@@ -7,7 +7,9 @@ import androidx.compose.runtime.remember
 import androidx.lifecycle.viewmodel.compose.viewModel
 import dagger.hilt.android.AndroidEntryPoint
 import tech.jknair.movieapp.ui.base.ComposeActivity
+import tech.jknair.movieapp.ui.screens.moviedetail.MovieDetailViewModel.MovieDetailScreenState
 import tech.jknair.movieapp.ui.screens.moviedetail.MovieDetailViewModel.MovieDetailUserAction
+import tech.jknair.movieapp.ui.screens.moviedetail.components.MovieDetail
 import tech.jknair.movieapp.ui.screens.movielist.MovieListContainer
 import tech.jknair.movieapp.ui.screens.movielist.MovieListViewModel
 import tech.jknair.movieapp.ui.screens.movielist.MovieListViewModel.MovieScreenState.Error
@@ -44,5 +46,19 @@ fun MovieDetailContainer(movieId: Int) {
 
     val screenState = viewModel.screenStateFlow.collectAsState()
 
+    when (val value = screenState.value) {
+        MovieDetailScreenState.Loading -> {
+            FullScreenLoadingIndicator(message = "Loading Details...")
+        }
+        is MovieDetailScreenState.Loaded -> {
+            MovieDetail(movieModel = value.movie)
+        }
+        MovieDetailScreenState.Idle -> {
+
+        }
+        is MovieDetailScreenState.Error -> {
+
+        }
+    }
 
 }
