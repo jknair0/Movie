@@ -1,13 +1,27 @@
 package tech.jknair.movieapp.ui.screens.moviedetail.components
 
+import androidx.compose.foundation.clickable
+import androidx.compose.material.Icon
+import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import coil.compose.AsyncImagePainter.State.Empty.painter
 import tech.jknair.movieapp.data.model.MovieModel
-import tech.jknair.movieapp.ui.screens.moviedetail.MovieDetailActivity
 
 @Composable
 fun MovieDetail(movieModel: MovieModel) {
+    TopAppBar {
+        Icon(
+            modifier = Modifier.clickable {
 
+            },
+            imageVector = Icons.Filled.ArrowBack,
+            contentDescription = null
+        )
+    }
 }
 
 @Preview
